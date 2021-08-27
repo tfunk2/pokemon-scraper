@@ -73,48 +73,54 @@ function App() {
   }
 
   function showAllSections() {
+    let currentH2;
     allSectionH2s.forEach((sectionH2) => {
+      console.log(sectionH2);
       if (sectionH2 === '<h2 id="pa">Patches Applied</h2>') {
-        setPatchesApplied(sectionH2);
+        currentH2 = document.getElementById("patches-applied");
+        // setPatchesApplied(sectionH2);
       }
       if (sectionH2 === '<h2 id="re">Randomized Evolutions</h2>') {
-        setRandomizedEvolutions(sectionH2);
+        currentH2 = document.getElementById("randomized-evolutions");
       }
       if (sectionH2 === '<h2 id="ep">New Evolution Paths</h2>') {
-        setEvolutionPaths(sectionH2);
+        currentH2 = document.getElementById("new-evolution-paths");
       }
       if (sectionH2 === '<h2 id="ps">Pokemon Base Stats & Types</h2>') {
-        setPokemonStats(sectionH2);
+        currentH2 = document.getElementById("pokemon-stats");
       }
       if (sectionH2 === '<h2 id="rte">Removing Trade Evolutions</h2>') {
-        setImpossibleEvos(sectionH2);
+        currentH2 = document.getElementById("removing-trade-evolutions");
       }
       if (sectionH2 === '<h2 id="rs">Random Starters</h2>') {
-        setStarters(sectionH2);
+        currentH2 = document.getElementById("random-starters");
       }
       if (sectionH2 === '<h2 id="md">Move Data</h2>') {
-        setMoveData(sectionH2);
+        currentH2 = document.getElementById("move-data");
       }
       if (sectionH2 === '<h2 id="pm">Pokemon Movesets</h2>') {
-        setPokemonMoves(sectionH2);
+        currentH2 = document.getElementById("pokemon-moves");
       }
       if (sectionH2 === '<h2 id="tp">Trainers Pokemon</h2>') {
-        setTrainerPokemon(sectionH2);
+        currentH2 = document.getElementById("trainers-pokemon");
       }
       if (sectionH2 === '<h2 id="sp">Static Pokemon</h2>') {
-        setStaticPokemon(sectionH2);
+        currentH2 = document.getElementById("static-pokemon");
       }
       if (sectionH2 === '<h2 id="wp">Wild Pokemon</h2>') {
-        setWildPokemon(sectionH2);
+        currentH2 = document.getElementById("wild-pokemon");
       }
       if (sectionH2 === '<h2 id="tm">TM Moves</h2>') {
-        setTmMoves(sectionH2);
+        currentH2 = document.getElementById("tm-moves");
       }
       if (sectionH2 === '<h2 id="mt">Move Tutor Moves</h2>') {
-        setMoveTutorMoves(sectionH2);
+        currentH2 = document.getElementById("move-tutor-moves");
       }
       if (sectionH2 === '<h2 id="igt">In-Game Trades</h2>') {
-        setInGameTrades(sectionH2);
+        currentH2 = document.getElementById("in-game-trades");
+      }
+      if (currentH2 !== null) {
+        currentH2.innerHTML = sectionH2;
       }
     });
   }
@@ -133,47 +139,48 @@ function App() {
       <p>{HTMLasString}</p>
       <hr /> */}
       <button onClick={showAllSections}>Show All Sections</button>
-      <h2>patchesApplied</h2>
-      <p>{patchesApplied}</p>
+      <h2>Patches Applied</h2>
+      {/* <p id="patches-applied">{patchesApplied}</p> */}
+      <div id="patches-applied"></div>
       <hr />
-      <h2>randomizedEvolutions</h2>
-      <p>{randomizedEvolutions}</p>
+      <h2>Randomized Evolutions</h2>
+      <div id="randomized-evolutions"></div>
       <hr />
-      <h2>evolutionPaths</h2>
-      <p>{evolutionPaths}</p>
+      <h2>New Evolution Paths</h2>
+      <div id="new-evolution-paths"></div>
       <hr />
-      <h2>pokemonStats</h2>
-      <p>{pokemonStats}</p>
+      <h2>Pokemon Base Stats & Types</h2>
+      <div id="pokemon-stats"></div>
       <hr />
-      <h2>impossibleEvos</h2>
-      <p>{impossibleEvos}</p>
+      <h2>Removing Trade Evolutions</h2>
+      <div id="removing-trade-evolutions"></div>
       <hr />
-      <h2>starters</h2>
-      <p>{starters}</p>
+      <h2>Random Starters</h2>
+      <div id="random-starters"></div>
       <hr />
-      <h2>moveData</h2>
-      <p>{moveData}</p>
+      <h2>Move Data</h2>
+      <div id="move-data"></div>
       <hr />
-      <h2>pokemonMoves</h2>
-      <p>{pokemonMoves}</p>
+      <h2>Pokemon Movesets</h2>
+      <div id="pokemon-moves"></div>
       <hr />
-      <h2>trainerPokemon</h2>
-      <p>{trainerPokemon}</p>
+      <h2>Trainers Pokemon</h2>
+      <div id="trainers-pokemon"></div>
       <hr />
-      <h2>staticPokemon</h2>
-      <p>{staticPokemon}</p>
+      <h2>Static Pokemon</h2>
+      <div id="static-pokemon"></div>
       <hr />
-      <h2>wildPokemon</h2>
-      <p>{wildPokemon}</p>
+      <h2>Wild Pokemon</h2>
+      <div id="wild-pokemon"></div>
       <hr />
-      <h2>tmMoves</h2>
-      <p>{tmMoves}</p>
+      <h2>TM Moves</h2>
+      <div id="tm-moves"></div>
       <hr />
-      <h2>moveTutorMoves</h2>
-      <p>{moveTutorMoves}</p>
+      <h2>Move Tutor Moves</h2>
+      <div id="move-tutor-moves"></div>
       <hr />
-      <h2>inGameTrades</h2>
-      <p>{inGameTrades}</p>
+      <h2>In-Game Trades</h2>
+      <div id="in-game-trades"></div>
     </div>
   );
 }
