@@ -55,6 +55,7 @@ function App() {
           strippedNewLinesAndReturns,
           ""
         );
+
         // Matches the full Patches Applied Section then grabs it
         const paRegex = /<h2 id="pa">Patches Applied<\/h2>[^]*<h2 id="re">/g;
         let patchesAppliedSection = flatHTML.match(paRegex);
@@ -65,6 +66,7 @@ function App() {
           ""
         );
         setPatchesApplied(trimmedPatchesAppliedSection);
+
         // Matches the full Randomized Evolutions Section then grabs it
         const reRegex =
           /<h2 id="re">Randomized Evolutions<\/h2>[^]*<h2 id="ep">/g;
@@ -76,6 +78,18 @@ function App() {
           ""
         );
         setRandomizedEvolutions(trimmedRESection);
+
+        // Matches the full Evolution Paths Section then grabs it
+        const epRegex =
+          /<h2 id="ep">New Evolution Paths<\/h2>[^]*<h2 id="ps">/g;
+        let evolutionPathsSection = flatHTML.match(epRegex);
+        // Matches and then removes the H2 tag used to mark the end of the section
+        const psRemoveTagRegex = /<h2 id="ps">/;
+        let trimmedEPSection = evolutionPathsSection[0].replace(
+          psRemoveTagRegex,
+          ""
+        );
+        setEvolutionPaths(trimmedEPSection);
       };
       reader.readAsText(pokefile);
       console.log("Read the file");
@@ -90,8 +104,11 @@ function App() {
     let paDiv = document.getElementById("patches-applied");
     paDiv.innerHTML = patchesApplied;
     // Gets Div for Randomized Evolutions and inserts the HTML from state
-    let epDiv = document.getElementById("randomized-evolutions");
-    epDiv.innerHTML = randomizedEvolutions;
+    let reDiv = document.getElementById("randomized-evolutions");
+    reDiv.innerHTML = randomizedEvolutions;
+    // Gets Div for Evolution Paths and inserts the HTML from state
+    let epDiv = document.getElementById("new-evolution-paths");
+    epDiv.innerHTML = evolutionPaths;
     allSectionH2s.forEach((sectionH2) => {
       // console.log(sectionH2);
       if (sectionH2 === '<h2 id="pa">Patches Applied</h2>') {
@@ -101,7 +118,7 @@ function App() {
         console.log("this was breaking it");
       }
       if (sectionH2 === '<h2 id="ep">New Evolution Paths</h2>') {
-        currentH2 = document.getElementById("new-evolution-paths");
+        console.log("this was breaking it");
       }
       if (sectionH2 === '<h2 id="ps">Pokemon Base Stats & Types</h2>') {
         currentH2 = document.getElementById("pokemon-stats");
