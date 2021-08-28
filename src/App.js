@@ -8,23 +8,25 @@ function App() {
   //   localStorage.setItem("pokeHTML", file);
   // };
 
-  const [HTMLasString, setHTMLasString] = useState("Currently empty");
+  const noChangesMade = "No changes made to this section...";
+
+  const [HTMLasString, setHTMLasString] = useState();
   const [allSectionH2s, setAllSectionH2s] = useState([]);
-  const [patchesApplied, setPatchesApplied] = useState("Currently empty");
+  const [patchesApplied, setPatchesApplied] = useState(noChangesMade);
   const [randomizedEvolutions, setRandomizedEvolutions] =
-    useState("Currently empty");
-  const [evolutionPaths, setEvolutionPaths] = useState("Currently empty");
-  const [pokemonStats, setPokemonStats] = useState("Currently empty");
-  const [impossibleEvos, setImpossibleEvos] = useState("Currently empty");
-  const [starters, setStarters] = useState("Currently empty");
-  const [moveData, setMoveData] = useState("Currently Empty");
-  const [pokemonMoves, setPokemonMoves] = useState("Currently empty");
-  const [trainerPokemon, setTrainerPokemon] = useState("Currently empty");
-  const [staticPokemon, setStaticPokemon] = useState("Currently empty");
-  const [wildPokemon, setWildPokemon] = useState("Currently empty");
-  const [tmMoves, setTmMoves] = useState("Currently empty");
-  const [moveTutorMoves, setMoveTutorMoves] = useState("Currently empty");
-  const [inGameTrades, setInGameTrades] = useState("Currently empty");
+    useState(noChangesMade);
+  const [evolutionPaths, setEvolutionPaths] = useState(noChangesMade);
+  const [pokemonStats, setPokemonStats] = useState(noChangesMade);
+  const [impossibleEvos, setImpossibleEvos] = useState(noChangesMade);
+  const [starters, setStarters] = useState(noChangesMade);
+  const [moveData, setMoveData] = useState(noChangesMade);
+  const [pokemonMoves, setPokemonMoves] = useState(noChangesMade);
+  const [trainerPokemon, setTrainerPokemon] = useState(noChangesMade);
+  const [staticPokemon, setStaticPokemon] = useState(noChangesMade);
+  const [wildPokemon, setWildPokemon] = useState(noChangesMade);
+  const [tmMoves, setTmMoves] = useState(noChangesMade);
+  const [moveTutorMoves, setMoveTutorMoves] = useState(noChangesMade);
+  const [inGameTrades, setInGameTrades] = useState(noChangesMade);
 
   function readSingleFile(event) {
     // Retrieve the first (and only!) File from the FileList object
@@ -34,22 +36,29 @@ function App() {
       let reader = new FileReader();
       reader.onload = (e) => {
         var contents = e.target.result;
-        // Take out comments from HTML
+
+        // Take out comments from HTML contents
         let strippedOutComments = contents.replace(/<!--=+-->/gi, "");
+
         // Take out a weird sentence repeated throughout HTML
         let strippedOutFirstSentence = strippedOutComments.replace(
           /This if statement could be pointless\./gi,
           ""
         );
+
         // Sets the HTMLasString state
         setHTMLasString(strippedOutFirstSentence);
+
         // Matches the header h2 for each section
         const h2regex = /<h2 id="[a-z]+">.+?<\/h2>/g;
+
         // Grabs all matches then sets it to the state allH2s
         let allH2s = strippedOutFirstSentence.match(h2regex);
         setAllSectionH2s(allH2s);
+
         // Matches all white space characters necessary
         const strippedNewLinesAndReturns = /\n|\r|\t/g;
+
         // Removes all matches
         const flatHTML = strippedOutFirstSentence.replace(
           strippedNewLinesAndReturns,
@@ -71,6 +80,7 @@ function App() {
         const reRegex =
           /<h2 id="re">Randomized Evolutions<\/h2>[^]*<h2 id="ep">/g;
         let randomizedEvolutionsSection = flatHTML.match(reRegex);
+
         // Matches and then removes the H2 tag used to mark the end of the section
         const epRemoveTagRegex = /<h2 id="ep">/;
         let trimmedRESection = randomizedEvolutionsSection[0].replace(
@@ -83,6 +93,7 @@ function App() {
         const epRegex =
           /<h2 id="ep">New Evolution Paths<\/h2>[^]*<h2 id="ps">/g;
         let evolutionPathsSection = flatHTML.match(epRegex);
+
         // Matches and then removes the H2 tag used to mark the end of the section
         const psRemoveTagRegex = /<h2 id="ps">/;
         let trimmedEPSection = evolutionPathsSection[0].replace(
@@ -90,6 +101,20 @@ function App() {
           ""
         );
         setEvolutionPaths(trimmedEPSection);
+
+        // Matches the full POkemon Stats Section then grabs it
+        const psRegex =
+          /<h2 id="ps">New Evolution Paths<\/h2>[^]*<h2 id="rte">/g;
+        let pokemonStatsSection = flatHTML.match(psRegex);
+        console.log(pokemonStatsSection);
+
+        // Matches and then removes the H2 tag used to mark the end of the section
+        const rteRemoveTagRegex = /<h2 id="rte">/;
+        let trimmedPSSection = pokemonStatsSection[0].replace(
+          rteRemoveTagRegex,
+          ""
+        );
+        setPokemonStats(trimmedPSSection);
       };
       reader.readAsText(pokefile);
       console.log("Read the file");
@@ -109,6 +134,9 @@ function App() {
     // Gets Div for Evolution Paths and inserts the HTML from state
     let epDiv = document.getElementById("new-evolution-paths");
     epDiv.innerHTML = evolutionPaths;
+    // Gets Div for Evolution Paths and inserts the HTML from state
+    let psDiv = document.getElementById("pokemon-stats");
+    psDiv.innerHTML = pokemonStats;
     allSectionH2s.forEach((sectionH2) => {
       // console.log(sectionH2);
       if (sectionH2 === '<h2 id="pa">Patches Applied</h2>') {
@@ -121,7 +149,7 @@ function App() {
         console.log("this was breaking it");
       }
       if (sectionH2 === '<h2 id="ps">Pokemon Base Stats & Types</h2>') {
-        currentH2 = document.getElementById("pokemon-stats");
+        console.log("this was breaking it");
       }
       if (sectionH2 === '<h2 id="rte">Removing Trade Evolutions</h2>') {
         currentH2 = document.getElementById("removing-trade-evolutions");
@@ -171,15 +199,14 @@ function App() {
       />
       <iframe id="pokeHTML" title="pokemon log html" src={pokeHTML}></iframe>
       {/* use this below to see the HTML code */}
-      {/* <h2>HTMLasString</h2>
+      <h2>HTMLasString</h2>
       <p>{HTMLasString}</p>
-      <hr /> */}
+      <hr />
       <button onClick={showAllSections}>Show All Sections</button>
       <div id="patches-applied"></div>
       <hr />
       <div id="randomized-evolutions"></div>
       <hr />
-      <h2>New Evolution Paths</h2>
       <div id="new-evolution-paths"></div>
       <hr />
       <h2>Pokemon Base Stats & Types</h2>
