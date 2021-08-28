@@ -64,8 +64,18 @@ function App() {
           reRemoveTagRegex,
           ""
         );
-        // Sets state variable for Patches Applied Section with HTML string
         setPatchesApplied(trimmedPatchesAppliedSection);
+        // Matches the full Randomized Evolutions Section then grabs it
+        const reRegex =
+          /<h2 id="re">Randomized Evolutions<\/h2>[^]*<h2 id="ep">/g;
+        let randomizedEvolutionsSection = flatHTML.match(reRegex);
+        // Matches and then removes the H2 tag used to mark the end of the section
+        const epRemoveTagRegex = /<h2 id="ep">/;
+        let trimmedRESection = randomizedEvolutionsSection[0].replace(
+          epRemoveTagRegex,
+          ""
+        );
+        setRandomizedEvolutions(trimmedRESection);
       };
       reader.readAsText(pokefile);
       console.log("Read the file");
@@ -76,15 +86,19 @@ function App() {
 
   function showAllSections() {
     let currentH2;
+    // Gets Div for Patches Applied and inserts the HTML from state
     let paDiv = document.getElementById("patches-applied");
     paDiv.innerHTML = patchesApplied;
+    // Gets Div for Randomized Evolutions and inserts the HTML from state
+    let epDiv = document.getElementById("randomized-evolutions");
+    epDiv.innerHTML = randomizedEvolutions;
     allSectionH2s.forEach((sectionH2) => {
-      console.log(sectionH2);
+      // console.log(sectionH2);
       if (sectionH2 === '<h2 id="pa">Patches Applied</h2>') {
         console.log("this was breaking it");
       }
       if (sectionH2 === '<h2 id="re">Randomized Evolutions</h2>') {
-        currentH2 = document.getElementById("randomized-evolutions");
+        console.log("this was breaking it");
       }
       if (sectionH2 === '<h2 id="ep">New Evolution Paths</h2>') {
         currentH2 = document.getElementById("new-evolution-paths");
@@ -146,7 +160,6 @@ function App() {
       <button onClick={showAllSections}>Show All Sections</button>
       <div id="patches-applied"></div>
       <hr />
-      <h2>Randomized Evolutions</h2>
       <div id="randomized-evolutions"></div>
       <hr />
       <h2>New Evolution Paths</h2>
