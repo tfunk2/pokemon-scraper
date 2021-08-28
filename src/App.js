@@ -26,10 +26,6 @@ function App() {
   const [moveTutorMoves, setMoveTutorMoves] = useState("Currently empty");
   const [inGameTrades, setInGameTrades] = useState("Currently empty");
 
-  // useEffect(() => {
-  //   setPatchesApplied("File Uploaded");
-  // }, [HTMLasString]);
-
   function readSingleFile(event) {
     // Retrieve the first (and only!) File from the FileList object
     let pokefile = event.target.files[0];
@@ -38,32 +34,38 @@ function App() {
       let reader = new FileReader();
       reader.onload = (e) => {
         var contents = e.target.result;
-        // alert(
-        //   "Got the file." +
-        //     "name: " +
-        //     pokefile.name +
-        //     ", " +
-        //     "type: " +
-        //     pokefile.type +
-        //     ", " +
-        //     "size: " +
-        //     pokefile.size +
-        //     "bytes, " +
-        //     "contents:" +
-        //     contents
-        // );
-        // console.log(e.target.result);
+        // Take out comments from HTML
         let strippedOutComments = contents.replace(/<!--=+-->/gi, "");
+        // Take out a weird sentence repeated throughout HTML
         let strippedOutFirstSentence = strippedOutComments.replace(
           /This if statement could be pointless\./gi,
           ""
         );
-        // console.log(strippedOutComments.replace(/> +</g, "><"));
+        // Sets the HTMLasString state
         setHTMLasString(strippedOutFirstSentence);
+        // Matches the header h2 for each section
         const h2regex = /<h2 id="[a-z]+">.+?<\/h2>/g;
+        // Grabs all matches then sets it to the state allH2s
         let allH2s = strippedOutFirstSentence.match(h2regex);
         setAllSectionH2s(allH2s);
-        console.log("allh2s--->> ", allH2s);
+        // Matches all white space characters necessary
+        const strippedNewLinesAndReturns = /\n|\r|\t/g;
+        // Removes all matches
+        const flatHTML = strippedOutFirstSentence.replace(
+          strippedNewLinesAndReturns,
+          ""
+        );
+        // Matches the full Patches Applied Section then grabs it
+        const paRegex = /<h2 id="pa">Patches Applied<\/h2>[^]*<h2 id="re">/g;
+        let patchesAppliedSection = flatHTML.match(paRegex);
+        // Matches and then removes the H2 tag used to mark the end of the section
+        const reRemoveTagRegex = /<h2 id="re">/;
+        let trimmedPatchesAppliedSection = patchesAppliedSection[0].replace(
+          reRemoveTagRegex,
+          ""
+        );
+        // Sets state variable for Patches Applied Section with HTML string
+        setPatchesApplied(trimmedPatchesAppliedSection);
       };
       reader.readAsText(pokefile);
       console.log("Read the file");
@@ -74,11 +76,12 @@ function App() {
 
   function showAllSections() {
     let currentH2;
+    let paDiv = document.getElementById("patches-applied");
+    paDiv.innerHTML = patchesApplied;
     allSectionH2s.forEach((sectionH2) => {
       console.log(sectionH2);
       if (sectionH2 === '<h2 id="pa">Patches Applied</h2>') {
-        currentH2 = document.getElementById("patches-applied");
-        // setPatchesApplied(sectionH2);
+        console.log("this was breaking it");
       }
       if (sectionH2 === '<h2 id="re">Randomized Evolutions</h2>') {
         currentH2 = document.getElementById("randomized-evolutions");
@@ -120,7 +123,9 @@ function App() {
         currentH2 = document.getElementById("in-game-trades");
       }
       if (currentH2 !== null) {
-        currentH2.innerHTML = sectionH2;
+        if (currentH2) {
+          currentH2.innerHTML = sectionH2;
+        }
       }
     });
   }
@@ -134,13 +139,11 @@ function App() {
         accept=".htm"
       />
       <iframe id="pokeHTML" title="pokemon log html" src={pokeHTML}></iframe>
-      {/* <iframe id="pokeHTML-input" title="pokemon log html" src={pokeHTML}></iframe> */}
+      {/* use this below to see the HTML code */}
       {/* <h2>HTMLasString</h2>
       <p>{HTMLasString}</p>
       <hr /> */}
       <button onClick={showAllSections}>Show All Sections</button>
-      <h2>Patches Applied</h2>
-      {/* <p id="patches-applied">{patchesApplied}</p> */}
       <div id="patches-applied"></div>
       <hr />
       <h2>Randomized Evolutions</h2>
