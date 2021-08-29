@@ -80,7 +80,6 @@ function App() {
         const reRegex =
           /<h2 id="re">Randomized Evolutions<\/h2>[^]*<h2 id="ep">/g;
         let randomizedEvolutionsSection = flatHTML.match(reRegex);
-
         // Matches and then removes the H2 tag used to mark the end of the section
         const epRemoveTagRegex = /<h2 id="ep">/;
         let trimmedRESection = randomizedEvolutionsSection[0].replace(
@@ -93,7 +92,6 @@ function App() {
         const epRegex =
           /<h2 id="ep">New Evolution Paths<\/h2>[^]*<h2 id="ps">/g;
         let evolutionPathsSection = flatHTML.match(epRegex);
-
         // Matches and then removes the H2 tag used to mark the end of the section
         const psRemoveTagRegex = /<h2 id="ps">/;
         let trimmedEPSection = evolutionPathsSection[0].replace(
@@ -104,10 +102,9 @@ function App() {
 
         // Matches the full POkemon Stats Section then grabs it
         const psRegex =
-          /<h2 id="ps">New Evolution Paths<\/h2>[^]*<h2 id="rte">/g;
+          /<h2 id="ps">Pokemon Base Stats & Types<\/h2>[^]*<h2 id="rte">/g;
         let pokemonStatsSection = flatHTML.match(psRegex);
         console.log(pokemonStatsSection);
-
         // Matches and then removes the H2 tag used to mark the end of the section
         const rteRemoveTagRegex = /<h2 id="rte">/;
         let trimmedPSSection = pokemonStatsSection[0].replace(
