@@ -153,6 +153,69 @@ function App() {
           ""
         );
         setPokemonMoves(trimmedPMSection);
+
+        // Matches the full Trainers Pokemon Section then grabs it
+        const tpRegex = /<h2 id="tp">Trainers Pokemon<\/h2>[^]*<h2 id="sp">/g;
+        let trainersPokemonSection = flatHTML.match(tpRegex);
+        // Matches and then removes the H2 tag used to mark the end of the section
+        const spRemoveTagRegex = /<h2 id="sp">/;
+        let trimmedTPSection = trainersPokemonSection[0].replace(
+          spRemoveTagRegex,
+          ""
+        );
+        setTrainerPokemon(trimmedTPSection);
+
+        // Matches the full Static Pokemon Section then grabs it
+        const spRegex = /<h2 id="sp">Static Pokemon<\/h2>[^]*<h2 id="wp">/g;
+        let staticPokemonSection = flatHTML.match(spRegex);
+        // Matches and then removes the H2 tag used to mark the end of the section
+        const wpRemoveTagRegex = /<h2 id="wp">/;
+        let trimmedSPSection = staticPokemonSection[0].replace(
+          wpRemoveTagRegex,
+          ""
+        );
+        setStaticPokemon(trimmedSPSection);
+
+        // Matches the full Wild Pokemon Section then grabs it
+        const wpRegex = /<h2 id="wp">Wild Pokemon<\/h2>[^]*<h2 id="tm">/g;
+        let wildPokemonSection = flatHTML.match(wpRegex);
+        // Matches and then removes the H2 tag used to mark the end of the section
+        const tmRemoveTagRegex = /<h2 id="tm">/;
+        let trimmedWPSection = wildPokemonSection[0].replace(
+          tmRemoveTagRegex,
+          ""
+        );
+        setWildPokemon(trimmedWPSection);
+
+        // Matches the full TM Moves Section then grabs it
+        const tmRegex = /<h2 id="tm">TM Moves<\/h2>[^]*<h2 id="mt">/g;
+        let tmMovesSection = flatHTML.match(tmRegex);
+        // Matches and then removes the H2 tag used to mark the end of the section
+        const mtRemoveTagRegex = /<h2 id="mt">/;
+        let trimmedTMSection = tmMovesSection[0].replace(mtRemoveTagRegex, "");
+        setTmMoves(trimmedTMSection);
+
+        // Matches the full Move Tutor Moves Section then grabs it
+        const mtRegex = /<h2 id="mt">Move Tutor Moves<\/h2>[^]*<h2 id="igt">/g;
+        let moveTutorSection = flatHTML.match(mtRegex);
+        // Matches and then removes the H2 tag used to mark the end of the section
+        const igtRemoveTagRegex = /<h2 id="igt">/;
+        let trimmedMTSection = moveTutorSection[0].replace(
+          igtRemoveTagRegex,
+          ""
+        );
+        setMoveTutorMoves(trimmedMTSection);
+
+        // Matches the full Move Tutor Moves Section then grabs it
+        const igtRegex = /<h2 id="igt">In-Game Trades<\/h2>[^]*<hr>/g;
+        let inGameTradesSection = flatHTML.match(igtRegex);
+        // Matches and then removes the H2 tag used to mark the end of the section
+        const hrRemoveTagRegex = /<hr>/;
+        let trimmedIGTSection = inGameTradesSection[0].replace(
+          hrRemoveTagRegex,
+          ""
+        );
+        setInGameTrades(trimmedIGTSection);
       };
       reader.readAsText(pokefile);
       console.log("Read the file");
@@ -187,6 +250,24 @@ function App() {
     // Gets Div for Pokemon Movesets and inserts the HTML from state
     let pmDiv = document.getElementById("pokemon-moves");
     pmDiv.innerHTML = pokemonMoves;
+    // Gets Div for Trainers Pokemon and inserts the HTML from state
+    let tpDiv = document.getElementById("trainers-pokemon");
+    tpDiv.innerHTML = trainerPokemon;
+    // Gets Div for Static Pokemon and inserts the HTML from state
+    let spDiv = document.getElementById("static-pokemon");
+    spDiv.innerHTML = staticPokemon;
+    // Gets Div for Wild Pokemon and inserts the HTML from state
+    let wpDiv = document.getElementById("wild-pokemon");
+    wpDiv.innerHTML = wildPokemon;
+    // Gets Div for TM Moves and inserts the HTML from state
+    let tmDiv = document.getElementById("tm-moves");
+    tmDiv.innerHTML = tmMoves;
+    // Gets Div for TM Moves and inserts the HTML from state
+    let mtDiv = document.getElementById("move-tutor-moves");
+    mtDiv.innerHTML = moveTutorMoves;
+    // Gets Div for TM Moves and inserts the HTML from state
+    let igtDiv = document.getElementById("move-tutor-moves");
+    igtDiv.innerHTML = inGameTrades;
     allSectionH2s.forEach((sectionH2) => {
       // console.log(sectionH2);
       if (sectionH2 === '<h2 id="pa">Patches Applied</h2>') {
@@ -214,22 +295,22 @@ function App() {
         console.log("this was breaking it");
       }
       if (sectionH2 === '<h2 id="tp">Trainers Pokemon</h2>') {
-        currentH2 = document.getElementById("trainers-pokemon");
+        console.log("this was breaking it");
       }
       if (sectionH2 === '<h2 id="sp">Static Pokemon</h2>') {
-        currentH2 = document.getElementById("static-pokemon");
+        console.log("this was breaking it");
       }
       if (sectionH2 === '<h2 id="wp">Wild Pokemon</h2>') {
-        currentH2 = document.getElementById("wild-pokemon");
+        console.log("this was breaking it");
       }
       if (sectionH2 === '<h2 id="tm">TM Moves</h2>') {
-        currentH2 = document.getElementById("tm-moves");
+        console.log("this was breaking it");
       }
       if (sectionH2 === '<h2 id="mt">Move Tutor Moves</h2>') {
-        currentH2 = document.getElementById("move-tutor-moves");
+        console.log("this was breaking it");
       }
       if (sectionH2 === '<h2 id="igt">In-Game Trades</h2>') {
-        currentH2 = document.getElementById("in-game-trades");
+        console.log("this was breaking it");
       }
       if (currentH2 !== null) {
         if (currentH2) {
@@ -247,7 +328,7 @@ function App() {
         type="file"
         accept=".htm"
       />
-      <iframe id="pokeHTML" title="pokemon log html" src={pokeHTML}></iframe>
+      {/* <iframe id="pokeHTML" title="pokemon log html" src={pokeHTML}></iframe> */}
       <button onClick={showAllSections}>Show All Sections</button>
       <div id="patches-applied"></div>
       <hr />
@@ -265,22 +346,16 @@ function App() {
       <hr />
       <div id="pokemon-moves"></div>
       <hr />
-      <h2>Trainers Pokemon</h2>
       <div id="trainers-pokemon"></div>
       <hr />
-      <h2>Static Pokemon</h2>
       <div id="static-pokemon"></div>
       <hr />
-      <h2>Wild Pokemon</h2>
       <div id="wild-pokemon"></div>
       <hr />
-      <h2>TM Moves</h2>
       <div id="tm-moves"></div>
       <hr />
-      <h2>Move Tutor Moves</h2>
       <div id="move-tutor-moves"></div>
       <hr />
-      <h2>In-Game Trades</h2>
       <div id="in-game-trades"></div>
     </div>
   );
