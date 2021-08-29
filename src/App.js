@@ -124,7 +124,7 @@ function App() {
         );
         setImpossibleEvos(trimmedRTESection);
 
-        // Matches the full POkemon Stats Section then grabs it
+        // Matches the full Pokemon Stats Section then grabs it
         const rsRegex = /<h2 id="rs">Random Starters<\/h2>[^]*<h2 id="md">/g;
         let randomStartersSection = flatHTML.match(rsRegex);
         // Matches and then removes the H2 tag used to mark the end of the section
@@ -134,6 +134,25 @@ function App() {
           ""
         );
         setStarters(trimmedRSSection);
+
+        // Matches the full Move Data Section then grabs it
+        const mdRegex = /<h2 id="md">Move Data<\/h2>[^]*<h2 id="pm">/g;
+        let moveDataSection = flatHTML.match(mdRegex);
+        // Matches and then removes the H2 tag used to mark the end of the section
+        const pmRemoveTagRegex = /<h2 id="pm">/;
+        let trimmedMDSection = moveDataSection[0].replace(pmRemoveTagRegex, "");
+        setMoveData(trimmedMDSection);
+
+        // Matches the full Pokemon Movesets Section then grabs it
+        const pmRegex = /<h2 id="pm">Pokemon Movesets<\/h2>[^]*<h2 id="tp">/g;
+        let pokemonMovesetsSection = flatHTML.match(pmRegex);
+        // Matches and then removes the H2 tag used to mark the end of the section
+        const tpRemoveTagRegex = /<h2 id="tp">/;
+        let trimmedPMSection = pokemonMovesetsSection[0].replace(
+          tpRemoveTagRegex,
+          ""
+        );
+        setPokemonMoves(trimmedPMSection);
       };
       reader.readAsText(pokefile);
       console.log("Read the file");
@@ -162,6 +181,12 @@ function App() {
     // Gets Div for Starters and inserts the HTML from state
     let rsDiv = document.getElementById("random-starters");
     rsDiv.innerHTML = starters;
+    // Gets Div for Move Data and inserts the HTML from state
+    let mdDiv = document.getElementById("move-data");
+    mdDiv.innerHTML = moveData;
+    // Gets Div for Pokemon Movesets and inserts the HTML from state
+    let pmDiv = document.getElementById("pokemon-moves");
+    pmDiv.innerHTML = pokemonMoves;
     allSectionH2s.forEach((sectionH2) => {
       // console.log(sectionH2);
       if (sectionH2 === '<h2 id="pa">Patches Applied</h2>') {
@@ -183,10 +208,10 @@ function App() {
         console.log("this was breaking it");
       }
       if (sectionH2 === '<h2 id="md">Move Data</h2>') {
-        currentH2 = document.getElementById("move-data");
+        console.log("this was breaking it");
       }
       if (sectionH2 === '<h2 id="pm">Pokemon Movesets</h2>') {
-        currentH2 = document.getElementById("pokemon-moves");
+        console.log("this was breaking it");
       }
       if (sectionH2 === '<h2 id="tp">Trainers Pokemon</h2>') {
         currentH2 = document.getElementById("trainers-pokemon");
@@ -223,10 +248,6 @@ function App() {
         accept=".htm"
       />
       <iframe id="pokeHTML" title="pokemon log html" src={pokeHTML}></iframe>
-      {/* use this below to see the HTML code */}
-      {/* <h2>HTMLasString</h2>
-      <p>{HTMLasString}</p>
-      <hr /> */}
       <button onClick={showAllSections}>Show All Sections</button>
       <div id="patches-applied"></div>
       <hr />
@@ -240,10 +261,8 @@ function App() {
       <hr />
       <div id="random-starters"></div>
       <hr />
-      <h2>Move Data</h2>
       <div id="move-data"></div>
       <hr />
-      <h2>Pokemon Movesets</h2>
       <div id="pokemon-moves"></div>
       <hr />
       <h2>Trainers Pokemon</h2>
