@@ -114,6 +114,45 @@ th, td {
     border-left: 1px solid #444;
 }
 
+.toggler-container {
+    display: flex;
+    flex-flow: wrap;
+}
+
+.section-toggler {
+    border-radius: 10px;
+    width: fit-content;
+    margin: 6px 4px;
+    padding: 6px 6px;
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Old versions of Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+}
+
+.on {
+    background-color: rgb(104, 255, 104);
+    border: 4px solid rgb(62, 172, 62);
+}
+
+.off {
+    background-color: rgb(253, 112, 112);
+    border: 4px solid rgb(182, 81, 81);
+}
+
+.hidden {
+    display: none;
+}
+
 .pk-chain-element {
     color: #444;
     font-family: Arial, Helvetica, sans-serif;

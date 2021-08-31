@@ -8,25 +8,39 @@ function App() {
   //   localStorage.setItem("pokeHTML", file);
   // };
 
-  const noChangesMade = "No changes made to this section...";
+  const noFileLoaded = "No log file has been uploaded yet...";
 
   const [HTMLasString, setHTMLasString] = useState();
   const [allSectionH2s, setAllSectionH2s] = useState([]);
-  const [patchesApplied, setPatchesApplied] = useState(noChangesMade);
+  const [patchesApplied, setPatchesApplied] = useState(noFileLoaded);
   const [randomizedEvolutions, setRandomizedEvolutions] =
-    useState(noChangesMade);
-  const [evolutionPaths, setEvolutionPaths] = useState(noChangesMade);
-  const [pokemonStats, setPokemonStats] = useState(noChangesMade);
-  const [impossibleEvos, setImpossibleEvos] = useState(noChangesMade);
-  const [starters, setStarters] = useState(noChangesMade);
-  const [moveData, setMoveData] = useState(noChangesMade);
-  const [pokemonMoves, setPokemonMoves] = useState(noChangesMade);
-  const [trainerPokemon, setTrainerPokemon] = useState(noChangesMade);
-  const [staticPokemon, setStaticPokemon] = useState(noChangesMade);
-  const [wildPokemon, setWildPokemon] = useState(noChangesMade);
-  const [tmMoves, setTmMoves] = useState(noChangesMade);
-  const [moveTutorMoves, setMoveTutorMoves] = useState(noChangesMade);
-  const [inGameTrades, setInGameTrades] = useState(noChangesMade);
+    useState(noFileLoaded);
+  const [evolutionPaths, setEvolutionPaths] = useState(noFileLoaded);
+  const [pokemonStats, setPokemonStats] = useState(noFileLoaded);
+  const [impossibleEvos, setImpossibleEvos] = useState(noFileLoaded);
+  const [starters, setStarters] = useState(noFileLoaded);
+  const [moveData, setMoveData] = useState(noFileLoaded);
+  const [pokemonMoves, setPokemonMoves] = useState(noFileLoaded);
+  const [trainerPokemon, setTrainerPokemon] = useState(noFileLoaded);
+  const [staticPokemon, setStaticPokemon] = useState(noFileLoaded);
+  const [wildPokemon, setWildPokemon] = useState(noFileLoaded);
+  const [tmMoves, setTmMoves] = useState(noFileLoaded);
+  const [moveTutorMoves, setMoveTutorMoves] = useState(noFileLoaded);
+  const [inGameTrades, setInGameTrades] = useState(noFileLoaded);
+  const [isPAVisible, setIsPAVisible] = useState(false);
+  const [isREVisible, setIsREVisible] = useState(false);
+  const [isEPVisible, setIsEPVisible] = useState(false);
+  const [isPSVisible, setIsPSVisible] = useState(false);
+  const [isRTEVisible, setIsRTEVisible] = useState(false);
+  const [isRSVisible, setIsRSVisible] = useState(false);
+  const [isMDVisible, setIsMDVisible] = useState(false);
+  const [isPMVisible, setIsPMVisible] = useState(false);
+  const [isTPVisible, setIsTPVisible] = useState(false);
+  const [isSPVisible, setIsSPVisible] = useState(false);
+  const [isWPVisible, setIsWPVisible] = useState(false);
+  const [isTMVisible, setIsTMVisible] = useState(false);
+  const [isMTVisible, setIsMTVisible] = useState(false);
+  const [isIGTVisible, setIsIGTVisible] = useState(false);
 
   function readSingleFile(event) {
     // Retrieve the first (and only!) File from the FileList object
@@ -224,101 +238,91 @@ function App() {
     }
   }
 
-  function showAllSections() {
-    let currentH2;
+  // function showAllSections() {}
+
+  useEffect(() => {
     // Gets Div for Patches Applied and inserts the HTML from state
     let paDiv = document.getElementById("patches-applied");
     paDiv.innerHTML = patchesApplied;
+  }, [patchesApplied]);
+
+  useEffect(() => {
     // Gets Div for Randomized Evolutions and inserts the HTML from state
     let reDiv = document.getElementById("randomized-evolutions");
     reDiv.innerHTML = randomizedEvolutions;
+  }, [randomizedEvolutions]);
+
+  useEffect(() => {
     // Gets Div for Evolution Paths and inserts the HTML from state
     let epDiv = document.getElementById("new-evolution-paths");
     epDiv.innerHTML = evolutionPaths;
+  }, [evolutionPaths]);
+
+  useEffect(() => {
     // Gets Div for Evolution Paths and inserts the HTML from state
     let psDiv = document.getElementById("pokemon-stats");
     psDiv.innerHTML = pokemonStats;
+  }, [pokemonStats]);
+
+  useEffect(() => {
     // Gets Div for Evolution Paths and inserts the HTML from state
     let rteDiv = document.getElementById("removing-trade-evolutions");
     rteDiv.innerHTML = impossibleEvos;
+  }, [impossibleEvos]);
+
+  useEffect(() => {
     // Gets Div for Starters and inserts the HTML from state
     let rsDiv = document.getElementById("random-starters");
     rsDiv.innerHTML = starters;
+  }, [starters]);
+
+  useEffect(() => {
     // Gets Div for Move Data and inserts the HTML from state
     let mdDiv = document.getElementById("move-data");
     mdDiv.innerHTML = moveData;
+  }, [moveData]);
+
+  useEffect(() => {
     // Gets Div for Pokemon Movesets and inserts the HTML from state
     let pmDiv = document.getElementById("pokemon-moves");
     pmDiv.innerHTML = pokemonMoves;
+  }, [pokemonMoves]);
+
+  useEffect(() => {
     // Gets Div for Trainers Pokemon and inserts the HTML from state
     let tpDiv = document.getElementById("trainers-pokemon");
     tpDiv.innerHTML = trainerPokemon;
+  }, [trainerPokemon]);
+
+  useEffect(() => {
     // Gets Div for Static Pokemon and inserts the HTML from state
     let spDiv = document.getElementById("static-pokemon");
     spDiv.innerHTML = staticPokemon;
+  }, [staticPokemon]);
+
+  useEffect(() => {
     // Gets Div for Wild Pokemon and inserts the HTML from state
     let wpDiv = document.getElementById("wild-pokemon");
     wpDiv.innerHTML = wildPokemon;
+  }, [wildPokemon]);
+
+  useEffect(() => {
     // Gets Div for TM Moves and inserts the HTML from state
     let tmDiv = document.getElementById("tm-moves");
     tmDiv.innerHTML = tmMoves;
+  }, [tmMoves]);
+
+  useEffect(() => {
     // Gets Div for TM Moves and inserts the HTML from state
     let mtDiv = document.getElementById("move-tutor-moves");
     mtDiv.innerHTML = moveTutorMoves;
+  }, [moveTutorMoves]);
+
+  useEffect(() => {
     // Gets Div for TM Moves and inserts the HTML from state
     let igtDiv = document.getElementById("move-tutor-moves");
     igtDiv.innerHTML = inGameTrades;
-    allSectionH2s.forEach((sectionH2) => {
-      // console.log(sectionH2);
-      if (sectionH2 === '<h2 id="pa">Patches Applied</h2>') {
-        console.log("this was breaking it");
-      }
-      if (sectionH2 === '<h2 id="re">Randomized Evolutions</h2>') {
-        console.log("this was breaking it");
-      }
-      if (sectionH2 === '<h2 id="ep">New Evolution Paths</h2>') {
-        console.log("this was breaking it");
-      }
-      if (sectionH2 === '<h2 id="ps">Pokemon Base Stats & Types</h2>') {
-        console.log("this was breaking it");
-      }
-      if (sectionH2 === '<h2 id="rte">Removing Trade Evolutions</h2>') {
-        console.log("this was breaking it");
-      }
-      if (sectionH2 === '<h2 id="rs">Random Starters</h2>') {
-        console.log("this was breaking it");
-      }
-      if (sectionH2 === '<h2 id="md">Move Data</h2>') {
-        console.log("this was breaking it");
-      }
-      if (sectionH2 === '<h2 id="pm">Pokemon Movesets</h2>') {
-        console.log("this was breaking it");
-      }
-      if (sectionH2 === '<h2 id="tp">Trainers Pokemon</h2>') {
-        console.log("this was breaking it");
-      }
-      if (sectionH2 === '<h2 id="sp">Static Pokemon</h2>') {
-        console.log("this was breaking it");
-      }
-      if (sectionH2 === '<h2 id="wp">Wild Pokemon</h2>') {
-        console.log("this was breaking it");
-      }
-      if (sectionH2 === '<h2 id="tm">TM Moves</h2>') {
-        console.log("this was breaking it");
-      }
-      if (sectionH2 === '<h2 id="mt">Move Tutor Moves</h2>') {
-        console.log("this was breaking it");
-      }
-      if (sectionH2 === '<h2 id="igt">In-Game Trades</h2>') {
-        console.log("this was breaking it");
-      }
-      if (currentH2 !== null) {
-        if (currentH2) {
-          currentH2.innerHTML = sectionH2;
-        }
-      }
-    });
-  }
+  }, [inGameTrades]);
 
   return (
     <div className="App">
@@ -329,34 +333,250 @@ function App() {
         accept=".htm"
       />
       {/* <iframe id="pokeHTML" title="pokemon log html" src={pokeHTML}></iframe> */}
-      <button onClick={showAllSections}>Show All Sections</button>
-      <div id="patches-applied"></div>
-      <hr />
-      <div id="randomized-evolutions"></div>
-      <hr />
-      <div id="new-evolution-paths"></div>
-      <hr />
-      <div id="pokemon-stats"></div>
-      <hr />
-      <div id="removing-trade-evolutions"></div>
-      <hr />
-      <div id="random-starters"></div>
-      <hr />
-      <div id="move-data"></div>
-      <hr />
-      <div id="pokemon-moves"></div>
-      <hr />
-      <div id="trainers-pokemon"></div>
-      <hr />
-      <div id="static-pokemon"></div>
-      <hr />
-      <div id="wild-pokemon"></div>
-      <hr />
-      <div id="tm-moves"></div>
-      <hr />
-      <div id="move-tutor-moves"></div>
-      <hr />
-      <div id="in-game-trades"></div>
+      {/* <div className="show-all" onClick={showAllSections}>Show All Sections</div> */}
+      <div className="toggler-container">
+        <div
+          className={isPAVisible ? "section-toggler on" : "section-toggler off"}
+          onClick={() => setIsPAVisible(!isPAVisible)}
+        >
+          Patches Applied
+        </div>
+        <div
+          className={isREVisible ? "section-toggler on" : "section-toggler off"}
+          onClick={() => setIsREVisible(!isREVisible)}
+        >
+          Randomized Evolutions
+        </div>
+        <div
+          className={isEPVisible ? "section-toggler on" : "section-toggler off"}
+          onClick={() => setIsEPVisible(!isEPVisible)}
+        >
+          Evolution Paths
+        </div>
+        <div
+          className={isPSVisible ? "section-toggler on" : "section-toggler off"}
+          onClick={() => setIsPSVisible(!isPSVisible)}
+        >
+          Pokemon Stats
+        </div>
+        <div
+          className={
+            isRTEVisible ? "section-toggler on" : "section-toggler off"
+          }
+          onClick={() => setIsRTEVisible(!isRTEVisible)}
+        >
+          Impossible Evos
+        </div>
+        <div
+          className={isRSVisible ? "section-toggler on" : "section-toggler off"}
+          onClick={() => setIsRSVisible(!isRSVisible)}
+        >
+          Starters
+        </div>
+        <div
+          className={isMDVisible ? "section-toggler on" : "section-toggler off"}
+          onClick={() => setIsMDVisible(!isMDVisible)}
+        >
+          Move Data
+        </div>
+        <div
+          className={isPMVisible ? "section-toggler on" : "section-toggler off"}
+          onClick={() => setIsPMVisible(!isPMVisible)}
+        >
+          Pokemon Moves
+        </div>
+        <div
+          className={isTPVisible ? "section-toggler on" : "section-toggler off"}
+          onClick={() => setIsTPVisible(!isTPVisible)}
+        >
+          Trainer Pokemon
+        </div>
+        <div
+          className={isSPVisible ? "section-toggler on" : "section-toggler off"}
+          onClick={() => setIsSPVisible(!isSPVisible)}
+        >
+          Static Pokemon
+        </div>
+        <div
+          className={isWPVisible ? "section-toggler on" : "section-toggler off"}
+          onClick={() => setIsWPVisible(!isWPVisible)}
+        >
+          Wild Pokemon
+        </div>
+        <div
+          className={isTMVisible ? "section-toggler on" : "section-toggler off"}
+          onClick={() => setIsTMVisible(!isTMVisible)}
+        >
+          TM Moves
+        </div>
+        <div
+          className={isMTVisible ? "section-toggler on" : "section-toggler off"}
+          onClick={() => setIsMTVisible(!isMTVisible)}
+        >
+          Move Tutor
+        </div>
+        <div
+          className={
+            isIGTVisible ? "section-toggler on" : "section-toggler off"
+          }
+          onClick={() => setIsIGTVisible(!isIGTVisible)}
+        >
+          In-Game Trades
+        </div>
+      </div>
+
+      {isPAVisible ? (
+        <div>
+          <div id="patches-applied"></div>
+          <hr />
+        </div>
+      ) : (
+        <div className="hidden">
+          <div id="patches-applied"></div>
+          <hr />
+        </div>
+      )}
+      {isREVisible ? (
+        <div>
+          <div id="randomized-evolutions"></div>
+          <hr />
+        </div>
+      ) : (
+        <div className="hidden">
+          <div id="randomized-evolutions"></div>
+          <hr />
+        </div>
+      )}
+      {isEPVisible ? (
+        <div>
+          <div id="new-evolution-paths"></div>
+          <hr />
+        </div>
+      ) : (
+        <div className="hidden">
+          <div id="new-evolution-paths"></div>
+          <hr />
+        </div>
+      )}
+      {isPSVisible ? (
+        <div>
+          <div id="pokemon-stats"></div>
+          <hr />
+        </div>
+      ) : (
+        <div className="hidden">
+          <div id="pokemon-stats"></div>
+          <hr />
+        </div>
+      )}
+      {isRTEVisible ? (
+        <div>
+          <div id="removing-trade-evolutions"></div>
+          <hr />
+        </div>
+      ) : (
+        <div className="hidden">
+          <div id="removing-trade-evolutions"></div>
+          <hr />
+        </div>
+      )}
+      {isRSVisible ? (
+        <div>
+          <div id="random-starters"></div>
+          <hr />
+        </div>
+      ) : (
+        <div className="hidden">
+          <div id="random-starters"></div>
+          <hr />
+        </div>
+      )}
+      {isMDVisible ? (
+        <div>
+          <div id="move-data"></div>
+          <hr />
+        </div>
+      ) : (
+        <div className="hidden">
+          <div id="move-data"></div>
+          <hr />
+        </div>
+      )}
+      {isPMVisible ? (
+        <div>
+          <div id="pokemon-moves"></div>
+          <hr />
+        </div>
+      ) : (
+        <div className="hidden">
+          <div id="pokemon-moves"></div>
+          <hr />
+        </div>
+      )}
+      {isTPVisible ? (
+        <div>
+          <div id="trainers-pokemon"></div>
+          <hr />
+        </div>
+      ) : (
+        <div className="hidden">
+          <div id="trainers-pokemon"></div>
+          <hr />
+        </div>
+      )}
+      {isSPVisible ? (
+        <div>
+          <div id="static-pokemon"></div>
+          <hr />
+        </div>
+      ) : (
+        <div className="hidden">
+          <div id="static-pokemon"></div>
+          <hr />
+        </div>
+      )}
+      {isWPVisible ? (
+        <div>
+          <div id="wild-pokemon"></div>
+          <hr />
+        </div>
+      ) : (
+        <div className="hidden">
+          <div id="wild-pokemon"></div>
+          <hr />
+        </div>
+      )}
+      {isTMVisible ? (
+        <div>
+          <div id="tm-moves"></div>
+          <hr />
+        </div>
+      ) : (
+        <div className="hidden">
+          <div id="tm-moves"></div>
+          <hr />
+        </div>
+      )}
+      {isMTVisible ? (
+        <div>
+          <div id="move-tutor-moves"></div>
+          <hr />
+        </div>
+      ) : (
+        <div className="hidden">
+          <div id="move-tutor-moves"></div>
+          <hr />
+        </div>
+      )}
+      {isIGTVisible ? (
+        <div>
+          <div id="in-game-trades"></div>
+        </div>
+      ) : (
+        <div className="hidden">
+          <div id="in-game-trades"></div>
+        </div>
+      )}
     </div>
   );
 }
