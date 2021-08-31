@@ -10,8 +10,8 @@ function App() {
 
   const noFileLoaded = "No log file has been uploaded yet...";
 
-  const [HTMLasString, setHTMLasString] = useState();
-  const [allSectionH2s, setAllSectionH2s] = useState([]);
+  const [fileName, setFileName] = useState("");
+  const [HTMLasString, setHTMLasString] = useState("");
   const [patchesApplied, setPatchesApplied] = useState(noFileLoaded);
   const [randomizedEvolutions, setRandomizedEvolutions] =
     useState(noFileLoaded);
@@ -45,12 +45,12 @@ function App() {
   function readSingleFile(event) {
     // Retrieve the first (and only!) File from the FileList object
     let pokefile = event.target.files[0];
+    console.log(pokefile);
 
     if (pokefile) {
       let reader = new FileReader();
       reader.onload = (e) => {
         var contents = e.target.result;
-
         // Take out comments from HTML contents
         let strippedOutComments = contents.replace(/<!--=+-->/gi, "");
 
@@ -60,15 +60,10 @@ function App() {
           ""
         );
 
-        // Sets the HTMLasString state
-        setHTMLasString(strippedOutFirstSentence);
-
-        // Matches the header h2 for each section
-        const h2regex = /<h2 id="[a-z]+">.+?<\/h2>/g;
-
-        // Grabs all matches then sets it to the state allH2s
-        let allH2s = strippedOutFirstSentence.match(h2regex);
-        setAllSectionH2s(allH2s);
+        if (strippedOutFirstSentence) {
+          setHTMLasString(strippedOutFirstSentence);
+          setFileName(pokefile.name);
+        }
 
         // Matches all white space characters necessary
         const strippedNewLinesAndReturns = /\n|\r|\t/g;
@@ -326,14 +321,28 @@ function App() {
 
   return (
     <div className="App">
-      <input
-        onChange={readSingleFile}
-        id="file-picker"
-        type="file"
-        accept=".htm"
-      />
+      <div className="file-picker-container" truncate>
+        <label id="file-picker-label" for="file-picker">
+          Browse For PokeRandomizer Log File...
+        </label>
+        <input
+          onChange={readSingleFile}
+          id="file-picker"
+          type="file"
+          accept=".htm"
+        />
+        {fileName ? (
+          <p className="successful-upload">
+            {fileName}
+            <span> successfully uploaded</span>
+          </p>
+        ) : (
+          <p>No File Uploaded...</p>
+        )}
+      </div>
       {/* <iframe id="pokeHTML" title="pokemon log html" src={pokeHTML}></iframe> */}
       {/* <div className="show-all" onClick={showAllSections}>Show All Sections</div> */}
+      <h3>Toggle Sections</h3>
       <div className="toggler-container">
         <div
           className={isPAVisible ? "section-toggler on" : "section-toggler off"}
