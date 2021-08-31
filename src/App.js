@@ -321,9 +321,19 @@ function App() {
 
   return (
     <div className="App">
+      <header>
+        <h1>PokeRandomizer Log Enhancer</h1>
+        <a
+          target="_blank"
+          rel="noreferrer"
+          href="https://afunkyportfolio.web.app/"
+        >
+          <p>by Tyler Funk 🤘</p>
+        </a>
+      </header>
       <div className="file-picker-container" truncate>
         <label id="file-picker-label" for="file-picker">
-          Browse For PokeRandomizer Log File...
+          Browse For Log File...
         </label>
         <input
           onChange={readSingleFile}
