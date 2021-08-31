@@ -1,17 +1,29 @@
-#pokeHTML {
-    height: 100%;
-    width: 100%;
+html {
+    display: block;
+}
+
+head {
+    display: none;
 }
 
 body {
     background-color: #eee;
-    color: rgb(53, 53, 53);
+    color: #444;
     font-family: Arial, Helvetica, sans-serif;
-    padding: 10px 50px;
+    padding: 20px 60px;
+    display: block;
+    padding: 20px 60px;
+}
+
+.clear {
+    color: #444;
+    font-family: Arial, Helvetica, sans-serif;
+    clear: both;
+    display: block;
 }
 
 .pk-table tr {
-    background-color: #bee1ff;
+    background-color: #e3f1fd;
 }
 
 tr {
@@ -27,6 +39,40 @@ table {
     border-collapse: collapse;
 }
 
+#randomized-evolutions>ul>li {
+    display: block;
+    width: fit-content;
+    padding: 6px 10px;
+    border-radius: 8px;
+    margin: 3px 0px;
+    font-size: 16px;
+    background-color: #63ac9c;
+    color: rgb(255, 255, 255);
+}
+
+#randomized-evolutions>ul>li>ul>li {
+    /* font-weight: bold; */
+    color: #444;
+    background-color: #8ef5df;
+    font-size: 16px;
+    display: block;
+    width: fit-content;
+    padding: 6px 10px;
+    border-radius: 8px;
+    margin: 3px 0px;
+}
+
+#static-pokemon>ul>li {
+    display: block;
+    width: fit-content;
+    padding: 6px 10px;
+    border-radius: 8px;
+    margin: 3px 0px;
+    font-size: 16px;
+    background-color: #63ac9c;
+    color: rgb(255, 255, 255);
+}
+
 .pk-table {
     color: #444;
     font-family: Arial, Helvetica, sans-serif;
@@ -34,9 +80,18 @@ table {
     border-collapse: collapse;
     empty-cells: show;
     border-color: #244073;
+    -webkit-font-smoothing: antialiased;
+    text-indent: initial;
+    border-spacing: 2px;
 }
 
 .pk-table td {
+    border-color: inherit;
+}
+
+.pk-table th {
+    background-color: #1b7df7;
+    color: #eee;
     border-color: inherit;
 }
 
@@ -70,4 +125,592 @@ th, td {
     padding: 6px 14px;
     border-radius: 8px;
     border: 2px solid #ffb262;
+}
+
+ul.tm-list {
+    list-style: none;
+    padding-left: 20px;
+}
+
+.tm-list>li {
+    list-style: none;
+    margin: 8px 0;
+}
+
+p>span.success {
+    font-family: Arial, Helvetica, sans-serif;
+    color: green;
+    padding: 3px 10px;
+    border: solid 1px green;
+    font-style: italic;
+    background-color: #ccffcc;
+    border-radius: 4px;
+}
+
+.left {
+    text-align: left;
+}
+
+tr.alt {
+    color: #444;
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    empty-cells: show;
+    background-color: #c5e1f9;
+}
+
+ul.moveset li {
+    font-family: Arial, Helvetica, sans-serif;
+    min-width: 90px;
+    border-radius: 3px;
+    display: inline-block;
+    background-color: #acd;
+    border: 2px solid #80b2f5;
+    padding: 3px 12px;
+    margin: 4px;
+    color: #358;
+}
+
+.moveset>li>strong {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #358;
+    display: block;
+}
+
+.moveset>li>em {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #358;
+    display: block;
+    font-size: 0.8em;
+    text-align: right;
+}
+
+ul.moveset {
+    padding-left: 20px;
+}
+
+div.trainer-box {
+    float: left;
+    width: 340px;
+    margin: 10px 10px;
+    display: block;
+}
+
+div.trainer {
+    background-color: #ffc379;
+    padding: 10px 18px;
+    border-radius: 10px;
+}
+
+.trainer>em {
+    font-style: italic;
+    display: block;
+    font-size: 0.8em;
+    margin-left: 60px;
+}
+
+.trainer-name {
+    display: block;
+}
+
+.trainer-name>em {
+    font-size: 0.8em;
+    background-color: #ffde93;
+    padding: 5px 8px;
+    border-radius: 12px;
+    margin-right: 2px;
+}
+
+.new-trainer-pk {
+    background-color: #f1e1b7;
+    height: 355px;
+    list-style-type: none;
+    margin: 0;
+    padding: 10px 42px;
+    border-radius: 10px;
+}
+
+.new-trainer-pk>li>div {
+    list-style-type: none;
+    font-size: 0.8em;
+}
+
+.new-trainer-pk>li>div>em {
+    list-style-type: none;
+    font-size: 0.8em;
+}
+
+.new-trainer-pk>li {
+    margin: 5px 0;
+    background-color: #f5da8e;
+    padding: 6px 14px;
+    border-radius: 8px;
+    border: 2px solid #ffb262;
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+ul.old-trainer-pk {
+    background-color: #e2d2ab;
+    height: 250px;
+    list-style-type: none;
+    margin: 0;
+    padding: 10px 42px;
+    border-radius: 10px;
+}
+
+.old-trainer-pk>li {
+    margin: 5px 0;
+    background-color: #dac281;
+    padding: 6px 14px;
+    border-radius: 8px;
+    border: 2px solid #e7a45b;
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+.old-trainer-pk>li>em {
+    list-style-type: none;
+    float: right;
+    font-size: 0.8em;
+}
+
+.wild-pk-set {
+    padding: 10px 20px;
+    border-radius: 6px 6px 0 6px;
+}
+
+.pk-set-list {
+    list-style: none;
+    border-radius: 0 0 10px 10px;
+    margin: 0 0 40px 20px;
+    padding: 10px 20px;
+}
+
+.pk-set-list>li {
+    display: inline-block;
+    border-radius: 5px;
+    padding: 8px 18px;
+    margin: 4px;
+}
+
+.pk-set-list>li em {
+    font-size: 0.8em;
+}
+
+.pk-set-grass {
+    background-color: #319634;
+    color: #eee;
+}
+
+.pk-list-grass {
+    background-color: #63d066;
+}
+
+.pk-list-grass>li {
+    background-color: #94e49e;
+}
+
+.pk-set-surfing {
+    background-color: #6edde8;
+    color: #333;
+}
+
+.pk-list-surfing {
+    background-color: #48b9da;
+}
+
+.pk-list-surfing>li {
+    background-color: #7ad7ec;
+}
+
+.pk-set-fishing {
+    background-color: #3773e2;
+    color: #eee;
+}
+
+.pk-list-fishing {
+    background-color: #2b4e8e;
+}
+
+.pk-list-fishing>li {
+    background-color: #296fd7;
+    color: #eee;
+}
+
+.pk-set-headbutt-trees {
+    background-color: #557d37;
+    color: #eee;
+}
+
+.pk-list-headbutt-trees {
+    background-color: #86b34b;
+}
+
+.pk-list-headbutt-trees>li {
+    background-color: #c0d66a;
+}
+
+.pk-set-bug-catching-contest {
+    background-color: #a7822e;
+    color: #eee;
+}
+
+.pk-list-bug-catching-contest {
+    background-color: #deb84d;
+}
+
+.pk-list-bug-catching-contest>li {
+    background-color: #ecd375;
+}
+
+.pk-set-rock-smash {
+    background-color: #96764e;
+    color: #eee;
+}
+
+.pk-list-rock-smash {
+    background-color: #b7a070;
+}
+
+.pk-list-rock-smash>li {
+    background-color: #e4d0a0;
+}
+
+.tm-list>li>strong {
+    border-radius: 3px;
+    font-size: 1.2em;
+    display: inline-block;
+    color: #eee;
+    background-color: #5290ec;
+    padding: 5px 10px;
+    margin-right: 10px;
+}
+
+table.trades-table {
+    color: #444;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 2px solid #444;
+    border-collapse: collapse;
+    empty-cells: show;
+    border-color: #0f630f;
+}
+
+.trades-table tr {
+    background-color: #c3f9c3;
+}
+
+.trades-table th {
+    background-color: #33ac33;
+    color: #eee;
+    border-color: inherit;
+}
+
+.trades-table td {
+    border-color: inherit;
+    font-weight: bold;
+}
+
+.trades-table tr.alt {
+    background-color: #e0ffe0;
+}
+
+.trades-table tr.alt td {
+    border-color: inherit;
+    font-weight: lighter;
+    font-style: italic;
+    color: gray;
+}
+
+div {
+    display: block;
+}
+
+span.pk-type.grass {
+    border-collapse: collapse;
+    empty-cells: show;
+    text-align: center;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-weight: bold;
+    border-radius: 4px;
+    color: #eee;
+    padding: 4px 10px;
+    margin: 2px;
+    font-size: 0.9em;
+    text-shadow: 0px 1px 2px #333;
+    text-transform: uppercase;
+    display: inline-block;
+    background-color: #19ad30;
+}
+
+span.pk-type.poison {
+    border-collapse: collapse;
+    empty-cells: show;
+    text-align: center;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-weight: bold;
+    border-radius: 4px;
+    color: #eee;
+    padding: 4px 10px;
+    margin: 2px;
+    font-size: 0.9em;
+    text-shadow: 0px 1px 2px #333;
+    text-transform: uppercase;
+    display: inline-block;
+    background-color: #782fff;
+}
+
+span.pk-type.fire {
+    border-collapse: collapse;
+    empty-cells: show;
+    text-align: center;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-weight: bold;
+    border-radius: 4px;
+    color: #eee;
+    padding: 4px 10px;
+    margin: 2px;
+    font-size: 0.9em;
+    text-shadow: 0px 1px 2px #333;
+    text-transform: uppercase;
+    display: inline-block;
+    background-color: #ff690f;
+}
+
+span.pk-type.flying {
+    border-collapse: collapse;
+    empty-cells: show;
+    text-align: center;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-weight: bold;
+    border-radius: 4px;
+    color: #eee;
+    padding: 4px 10px;
+    margin: 2px;
+    font-size: 0.9em;
+    text-shadow: 0px 1px 2px #333;
+    text-transform: uppercase;
+    display: inline-block;
+    background-color: #c1c0fa;
+}
+
+span.pk-type.water {
+    border-collapse: collapse;
+    empty-cells: show;
+    text-align: center;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-weight: bold;
+    border-radius: 4px;
+    color: #eee;
+    padding: 4px 10px;
+    margin: 2px;
+    font-size: 0.9em;
+    text-shadow: 0px 1px 2px #333;
+    text-transform: uppercase;
+    display: inline-block;
+    background-color: #2d94ff;
+}
+
+span.pk-type.bug {
+    border-collapse: collapse;
+    empty-cells: show;
+    text-align: center;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-weight: bold;
+    border-radius: 4px;
+    color: #eee;
+    padding: 4px 10px;
+    margin: 2px;
+    font-size: 0.9em;
+    text-shadow: 0px 1px 2px #333;
+    text-transform: uppercase;
+    display: inline-block;
+    background-color: #a8d02d;
+}
+
+span.pk-type.normal {
+    border-collapse: collapse;
+    empty-cells: show;
+    text-align: center;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-weight: bold;
+    border-radius: 4px;
+    color: #eee;
+    padding: 4px 10px;
+    margin: 2px;
+    font-size: 0.9em;
+    text-shadow: 0px 1px 2px #333;
+    text-transform: uppercase;
+    display: inline-block;
+    background-color: #7f7f7f;
+}
+
+span.pk-type.electric {
+    border-collapse: collapse;
+    empty-cells: show;
+    text-align: center;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-weight: bold;
+    border-radius: 4px;
+    color: #eee;
+    padding: 4px 10px;
+    margin: 2px;
+    font-size: 0.9em;
+    text-shadow: 0px 1px 2px #333;
+    text-transform: uppercase;
+    display: inline-block;
+    background-color: #ffce00;
+}
+
+span.pk-type.ground {
+    border-collapse: collapse;
+    empty-cells: show;
+    text-align: center;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-weight: bold;
+    border-radius: 4px;
+    color: #eee;
+    padding: 4px 10px;
+    margin: 2px;
+    font-size: 0.9em;
+    text-shadow: 0px 1px 2px #333;
+    text-transform: uppercase;
+    display: inline-block;
+    background-color: #d2a96a;
+}
+
+span.pk-type.fighting {
+    border-collapse: collapse;
+    empty-cells: show;
+    text-align: center;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-weight: bold;
+    border-radius: 4px;
+    color: #eee;
+    padding: 4px 10px;
+    margin: 2px;
+    font-size: 0.9em;
+    text-shadow: 0px 1px 2px #333;
+    text-transform: uppercase;
+    display: inline-block;
+    background-color: #bf533b;
+}
+
+span.pk-type.psychic {
+    border-collapse: collapse;
+    empty-cells: show;
+    text-align: center;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-weight: bold;
+    border-radius: 4px;
+    color: #eee;
+    padding: 4px 10px;
+    margin: 2px;
+    font-size: 0.9em;
+    text-shadow: 0px 1px 2px #333;
+    text-transform: uppercase;
+    display: inline-block;
+    background-color: #ff6aaf;
+}
+
+span.pk-type.rock {
+    border-collapse: collapse;
+    empty-cells: show;
+    text-align: center;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-weight: bold;
+    border-radius: 4px;
+    color: #eee;
+    padding: 4px 10px;
+    margin: 2px;
+    font-size: 0.9em;
+    text-shadow: 0px 1px 2px #333;
+    text-transform: uppercase;
+    display: inline-block;
+    background-color: #6f6155;
+}
+
+span.pk-type.ice {
+    border-collapse: collapse;
+    empty-cells: show;
+    text-align: center;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-weight: bold;
+    border-radius: 4px;
+    color: #eee;
+    padding: 4px 10px;
+    margin: 2px;
+    font-size: 0.9em;
+    text-shadow: 0px 1px 2px #333;
+    text-transform: uppercase;
+    display: inline-block;
+    background-color: #95d0fd;
+}
+
+span.pk-type.dragon {
+    border-collapse: collapse;
+    empty-cells: show;
+    text-align: center;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-weight: bold;
+    border-radius: 4px;
+    color: #eee;
+    padding: 4px 10px;
+    margin: 2px;
+    font-size: 0.9em;
+    text-shadow: 0px 1px 2px #333;
+    text-transform: uppercase;
+    display: inline-block;
+    background-color: #00c7be;
+}
+
+span.pk-type.dark {
+    border-collapse: collapse;
+    empty-cells: show;
+    text-align: center;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-weight: bold;
+    border-radius: 4px;
+    color: #eee;
+    padding: 4px 10px;
+    margin: 2px;
+    font-size: 0.9em;
+    text-shadow: 0px 1px 2px #333;
+    text-transform: uppercase;
+    display: inline-block;
+    background-color: #5133ad;
+}
+
+span.pk-type.ghost {
+    border-collapse: collapse;
+    empty-cells: show;
+    text-align: center;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-weight: bold;
+    border-radius: 4px;
+    color: #eee;
+    padding: 4px 10px;
+    margin: 2px;
+    font-size: 0.9em;
+    text-shadow: 0px 1px 2px #333;
+    text-transform: uppercase;
+    display: inline-block;
+    background-color: #6860a9;
+}
+
+span.pk-type.steel {
+    border-collapse: collapse;
+    empty-cells: show;
+    text-align: center;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-weight: bold;
+    border-radius: 4px;
+    color: #eee;
+    padding: 4px 10px;
+    margin: 2px;
+    font-size: 0.9em;
+    text-shadow: 0px 1px 2px #333;
+    text-transform: uppercase;
+    display: inline-block;
+    background-color: #93a8c1;
 }
