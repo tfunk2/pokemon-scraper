@@ -315,7 +315,7 @@ function App() {
 
   useEffect(() => {
     // Gets Div for TM Moves and inserts the HTML from state
-    let igtDiv = document.getElementById("move-tutor-moves");
+    let igtDiv = document.getElementById("in-game-trades");
     igtDiv.innerHTML = inGameTrades;
   }, [inGameTrades]);
 
