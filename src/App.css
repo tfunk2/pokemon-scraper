@@ -72,6 +72,10 @@ body {
     padding: 20px 60px;
 }
 
+h2 {
+    font-family: 'Press Start 2P', cursive;
+}
+
 .clear {
     color: #444;
     font-family: Arial, Helvetica, sans-serif;
