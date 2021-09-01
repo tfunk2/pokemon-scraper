@@ -79,11 +79,18 @@ function App() {
         let patchesAppliedSection = flatHTML.match(paRegex);
         // Matches and then removes the H2 tag used to mark the end of the section
         const reRemoveTagRegex = /<h2 id="re">/;
-        let trimmedPatchesAppliedSection = patchesAppliedSection[0].replace(
-          reRemoveTagRegex,
-          ""
-        );
-        setPatchesApplied(trimmedPatchesAppliedSection);
+        if (patchesAppliedSection) {
+          let trimmedPatchesAppliedSection = patchesAppliedSection[0].replace(
+            reRemoveTagRegex,
+            ""
+          );
+          setPatchesApplied(trimmedPatchesAppliedSection);
+        } else {
+          setPatchesApplied(
+            "<h2>Patches Applied</h2>" +
+              "This section is unaffected in this Pokemon verson..."
+          );
+        }
 
         // Matches the full Randomized Evolutions Section then grabs it
         const reRegex =
@@ -91,11 +98,18 @@ function App() {
         let randomizedEvolutionsSection = flatHTML.match(reRegex);
         // Matches and then removes the H2 tag used to mark the end of the section
         const epRemoveTagRegex = /<h2 id="ep">/;
-        let trimmedRESection = randomizedEvolutionsSection[0].replace(
-          epRemoveTagRegex,
-          ""
-        );
-        setRandomizedEvolutions(trimmedRESection);
+        if (randomizedEvolutionsSection) {
+          let trimmedRESection = randomizedEvolutionsSection[0].replace(
+            epRemoveTagRegex,
+            ""
+          );
+          setRandomizedEvolutions(trimmedRESection);
+        } else {
+          setRandomizedEvolutions(
+            "<h2>Randomized Evolutions</h2>" +
+              "This section is unaffected in this Pokemon verson..."
+          );
+        }
 
         // Matches the full Evolution Paths Section then grabs it
         const epRegex =
@@ -103,11 +117,18 @@ function App() {
         let evolutionPathsSection = flatHTML.match(epRegex);
         // Matches and then removes the H2 tag used to mark the end of the section
         const psRemoveTagRegex = /<h2 id="ps">/;
-        let trimmedEPSection = evolutionPathsSection[0].replace(
-          psRemoveTagRegex,
-          ""
-        );
-        setEvolutionPaths(trimmedEPSection);
+        if (evolutionPathsSection) {
+          let trimmedEPSection = evolutionPathsSection[0].replace(
+            psRemoveTagRegex,
+            ""
+          );
+          setEvolutionPaths(trimmedEPSection);
+        } else {
+          setEvolutionPaths(
+            "<h2>Evolution Paths</h2>" +
+              "This section is unaffected in this Pokemon verson..."
+          );
+        }
 
         // Matches the full POkemon Stats Section then grabs it
         const psRegex =
@@ -115,11 +136,18 @@ function App() {
         let pokemonStatsSection = flatHTML.match(psRegex);
         // Matches and then removes the H2 tag used to mark the end of the section
         const rteRemoveTagRegex = /<h2 id="rte">/;
-        let trimmedPSSection = pokemonStatsSection[0].replace(
-          rteRemoveTagRegex,
-          ""
-        );
-        setPokemonStats(trimmedPSSection);
+        if (pokemonStatsSection) {
+          let trimmedPSSection = pokemonStatsSection[0].replace(
+            rteRemoveTagRegex,
+            ""
+          );
+          setPokemonStats(trimmedPSSection);
+        } else {
+          setPokemonStats(
+            "<h2>POkemon Stats</h2>" +
+              "This section is unaffected in this Pokemon verson..."
+          );
+        }
 
         // Matches the full POkemon Stats Section then grabs it
         const rteRegex =
@@ -127,104 +155,180 @@ function App() {
         let impossibleEvosSection = flatHTML.match(rteRegex);
         // Matches and then removes the H2 tag used to mark the end of the section
         const rsRemoveTagRegex = /<h2 id="rs">/;
-        let trimmedRTESection = impossibleEvosSection[0].replace(
-          rsRemoveTagRegex,
-          ""
-        );
-        setImpossibleEvos(trimmedRTESection);
+        if (impossibleEvosSection) {
+          let trimmedRTESection = impossibleEvosSection[0].replace(
+            rsRemoveTagRegex,
+            ""
+          );
+          setImpossibleEvos(trimmedRTESection);
+        } else {
+          setImpossibleEvos(
+            "<h2>POkemon Stats</h2>" +
+              "This section is unaffected in this Pokemon verson..."
+          );
+        }
 
         // Matches the full Pokemon Stats Section then grabs it
         const rsRegex = /<h2 id="rs">Random Starters<\/h2>[^]*<h2 id="md">/g;
         let randomStartersSection = flatHTML.match(rsRegex);
         // Matches and then removes the H2 tag used to mark the end of the section
         const mdRemoveTagRegex = /<h2 id="md">/;
-        let trimmedRSSection = randomStartersSection[0].replace(
-          mdRemoveTagRegex,
-          ""
-        );
-        setStarters(trimmedRSSection);
+        if (randomStartersSection) {
+          let trimmedRSSection = randomStartersSection[0].replace(
+            mdRemoveTagRegex,
+            ""
+          );
+          setStarters(trimmedRSSection);
+        } else {
+          setStarters(
+            "<h2>Pokemon Stats</h2>" +
+              "This section is unaffected in this Pokemon verson..."
+          );
+        }
 
         // Matches the full Move Data Section then grabs it
         const mdRegex = /<h2 id="md">Move Data<\/h2>[^]*<h2 id="pm">/g;
         let moveDataSection = flatHTML.match(mdRegex);
         // Matches and then removes the H2 tag used to mark the end of the section
         const pmRemoveTagRegex = /<h2 id="pm">/;
-        let trimmedMDSection = moveDataSection[0].replace(pmRemoveTagRegex, "");
-        setMoveData(trimmedMDSection);
+        if (moveDataSection) {
+          let trimmedMDSection = moveDataSection[0].replace(
+            pmRemoveTagRegex,
+            ""
+          );
+          setMoveData(trimmedMDSection);
+        } else {
+          setMoveData(
+            "<h2>Move Data</h2>" +
+              "This section is unaffected in this Pokemon verson..."
+          );
+        }
 
         // Matches the full Pokemon Movesets Section then grabs it
         const pmRegex = /<h2 id="pm">Pokemon Movesets<\/h2>[^]*<h2 id="tp">/g;
         let pokemonMovesetsSection = flatHTML.match(pmRegex);
         // Matches and then removes the H2 tag used to mark the end of the section
         const tpRemoveTagRegex = /<h2 id="tp">/;
-        let trimmedPMSection = pokemonMovesetsSection[0].replace(
-          tpRemoveTagRegex,
-          ""
-        );
-        setPokemonMoves(trimmedPMSection);
+        if (pokemonMovesetsSection) {
+          let trimmedPMSection = pokemonMovesetsSection[0].replace(
+            tpRemoveTagRegex,
+            ""
+          );
+          setPokemonMoves(trimmedPMSection);
+        } else {
+          setPokemonMoves(
+            "<h2>Pokemon Movesets</h2>" +
+              "This section is unaffected in this Pokemon verson..."
+          );
+        }
 
         // Matches the full Trainers Pokemon Section then grabs it
         const tpRegex = /<h2 id="tp">Trainers Pokemon<\/h2>[^]*<h2 id="sp">/g;
         let trainersPokemonSection = flatHTML.match(tpRegex);
         // Matches and then removes the H2 tag used to mark the end of the section
         const spRemoveTagRegex = /<h2 id="sp">/;
-        let trimmedTPSection = trainersPokemonSection[0].replace(
-          spRemoveTagRegex,
-          ""
-        );
-        setTrainerPokemon(trimmedTPSection);
+        if (trainersPokemonSection) {
+          let trimmedTPSection = trainersPokemonSection[0].replace(
+            spRemoveTagRegex,
+            ""
+          );
+          setTrainerPokemon(trimmedTPSection);
+        } else {
+          setTrainerPokemon(
+            "<h2>Trainers Pokemon</h2>" +
+              "This section is unaffected in this Pokemon verson..."
+          );
+        }
 
         // Matches the full Static Pokemon Section then grabs it
         const spRegex = /<h2 id="sp">Static Pokemon<\/h2>[^]*<h2 id="wp">/g;
         let staticPokemonSection = flatHTML.match(spRegex);
         // Matches and then removes the H2 tag used to mark the end of the section
         const wpRemoveTagRegex = /<h2 id="wp">/;
-        let trimmedSPSection = staticPokemonSection[0].replace(
-          wpRemoveTagRegex,
-          ""
-        );
-        setStaticPokemon(trimmedSPSection);
+        if (staticPokemonSection) {
+          let trimmedSPSection = staticPokemonSection[0].replace(
+            wpRemoveTagRegex,
+            ""
+          );
+          setStaticPokemon(trimmedSPSection);
+        } else {
+          setStaticPokemon(
+            "<h2>Static Pokemon</h2>" +
+              "This section is unaffected in this Pokemon verson..."
+          );
+        }
 
         // Matches the full Wild Pokemon Section then grabs it
         const wpRegex = /<h2 id="wp">Wild Pokemon<\/h2>[^]*<h2 id="tm">/g;
         let wildPokemonSection = flatHTML.match(wpRegex);
         // Matches and then removes the H2 tag used to mark the end of the section
         const tmRemoveTagRegex = /<h2 id="tm">/;
-        let trimmedWPSection = wildPokemonSection[0].replace(
-          tmRemoveTagRegex,
-          ""
-        );
-        setWildPokemon(trimmedWPSection);
+        if (wildPokemonSection) {
+          let trimmedWPSection = wildPokemonSection[0].replace(
+            tmRemoveTagRegex,
+            ""
+          );
+          setWildPokemon(trimmedWPSection);
+        } else {
+          setWildPokemon(
+            "<h2>Wild Pokemon</h2>" +
+              "This section is unaffected in this Pokemon verson..."
+          );
+        }
 
         // Matches the full TM Moves Section then grabs it
         const tmRegex = /<h2 id="tm">TM Moves<\/h2>[^]*<h2 id="mt">/g;
         let tmMovesSection = flatHTML.match(tmRegex);
         // Matches and then removes the H2 tag used to mark the end of the section
         const mtRemoveTagRegex = /<h2 id="mt">/;
-        let trimmedTMSection = tmMovesSection[0].replace(mtRemoveTagRegex, "");
-        setTmMoves(trimmedTMSection);
+        if (tmMovesSection) {
+          let trimmedTMSection = tmMovesSection[0].replace(
+            mtRemoveTagRegex,
+            ""
+          );
+          setTmMoves(trimmedTMSection);
+        } else {
+          setTmMoves(
+            "<h2>TM Moves</h2>" +
+              "This section is unaffected in this Pokemon verson..."
+          );
+        }
 
         // Matches the full Move Tutor Moves Section then grabs it
         const mtRegex = /<h2 id="mt">Move Tutor Moves<\/h2>[^]*<h2 id="igt">/g;
         let moveTutorSection = flatHTML.match(mtRegex);
         // Matches and then removes the H2 tag used to mark the end of the section
         const igtRemoveTagRegex = /<h2 id="igt">/;
-        let trimmedMTSection = moveTutorSection[0].replace(
-          igtRemoveTagRegex,
-          ""
-        );
-        setMoveTutorMoves(trimmedMTSection);
+        if (moveTutorSection) {
+          let trimmedMTSection = moveTutorSection[0].replace(
+            igtRemoveTagRegex,
+            ""
+          );
+          setMoveTutorMoves(trimmedMTSection);
+        } else {
+          setMoveTutorMoves(
+            "<h2>Move Tutor</h2>" +
+              "This section is unaffected in this Pokemon version.."
+          );
+        }
 
         // Matches the full Move Tutor Moves Section then grabs it
         const igtRegex = /<h2 id="igt">In-Game Trades<\/h2>[^]*<hr>/g;
         let inGameTradesSection = flatHTML.match(igtRegex);
         // Matches and then removes the H2 tag used to mark the end of the section
         const hrRemoveTagRegex = /<hr>/;
-        let trimmedIGTSection = inGameTradesSection[0].replace(
-          hrRemoveTagRegex,
-          ""
-        );
-        setInGameTrades(trimmedIGTSection);
+        if (inGameTradesSection) {
+          let trimmedIGTSection = inGameTradesSection[0].replace(
+            hrRemoveTagRegex,
+            ""
+          );
+          setInGameTrades(trimmedIGTSection);
+        } else {
+          setInGameTrades(
+            "<h2>In-Game Trades</h2>" +
+              "This section is unaffected in this Pokemon version.."
+          );
+        }
       };
       reader.readAsText(pokefile);
       console.log("Read the file");
